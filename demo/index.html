@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stavarkling | Coming Soon</title>
+  <meta name="description" content="Stavarkling — Luxury Visionary Art. Something extraordinary is coming soon." />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="page">
+    <div class="bg-artwork" aria-hidden="true"></div>
+    <img src="assets/images/primary-bg-mask.png" alt="" class="light-curve" aria-hidden="true">
+    <canvas id="stars" class="bg-stars" aria-hidden="true"></canvas>
+
+    <main class="content">
+      <header class="brand reveal">
+        <img
+          src="assets/images/icons/lotus-icon-colored.png"
+          alt=""
+          class="brand-lotus"
+        />
+        <h1 class="brand-name">STAVARKLING</h1>
+        <p class="brand-tagline">LUXURY VISIONARY ART</p>
+      </header>
+
+      <section class="hero">
+        <p class="eyebrow reveal">SOMETHING EXTRAORDINARY</p>
+        <h2 class="headline reveal">
+          <span>COMING</span>
+          <span>SOON</span>
+        </h2>
+
+        <div class="divider reveal" aria-hidden="true">
+          <span class="divider-line"></span>
+          <img src="assets/images/icons/lotus-solid-icon.png" alt="" class="divider-lotus" />
+          <span class="divider-line"></span>
+        </div>
+
+        <ul class="mantra reveal">
+          <li>ONE ARTWORK.</li>
+          <li>ONE COLLECTOR.</li>
+          <li>ONE DECISION.</li>
+        </ul>
+      </section>
+
+      <section class="notify reveal">
+        <p class="notify-label">BE THE FIRST TO KNOW</p>
+        <form class="notify-form" id="notify-form" novalidate>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Enter your email address"
+            autocomplete="email"
+            required
+            aria-label="Email address"
+          />
+          <button type="submit" class="notify-btn" aria-label="Subscribe">
+            <img src="assets/images/icons/arrow-right-white.png" alt="" />
+          </button>
+        </form>
+        <p class="notify-message" id="notify-message" role="status" aria-live="polite"></p>
+      </section>
+
+      <footer class="footer reveal">
+        <div class="divider" aria-hidden="true">
+          <span class="divider-line"></span>
+          <img src="assets/images/icons/lotus-solid-icon.png" alt="" class="divider-lotus" />
+          <span class="divider-line"></span>
+        </div>
+        <p class="footer-text">THE EXPERIMENT BEGINS SOON.</p>
+      </footer>
+    </main>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
