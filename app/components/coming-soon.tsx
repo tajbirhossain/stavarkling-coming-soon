@@ -49,7 +49,7 @@ export function ComingSoon() {
         </header>
 
         <section className="hero">
-          <p className="eyebrow reveal">SOMETHING EXTRAORDINARY</p>
+          <p className="hero-question reveal">CAN VALUE BEGIN WITH A DECISION?</p>
           <h2 className="headline reveal">
             <span>COMING</span>
             <span>SOON</span>
