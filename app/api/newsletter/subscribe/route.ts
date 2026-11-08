@@ -1,4 +1,6 @@
 import { NextResponse } from "next/server";
+import { isIP } from "node:net";
+import { getPool, hasDatabaseUrl } from "@/lib/db";
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const TURNSTILE_VERIFY_URL =
@@ -101,27 +103,26 @@ export async function POST(request: Request) {
       );
     }
 
-    const scriptUrl = process.env.GOOGLE_SCRIPT_URL;
-    if (!scriptUrl) {
+    if (!hasDatabaseUrl()) {
       return NextResponse.json(
         { success: false, error: "Newsletter service is not configured." },
         { status: 500 },
       );
     }
 
-    const response = await fetch(scriptUrl, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, source: "Website" }),
-      redirect: "follow",
-    });
-
-    if (!response.ok) {
-      return NextResponse.json(
-        { success: false, error: "Failed to subscribe. Please try again." },
-        { status: 502 },
-      );
-    }
+    // Duplicate emails (case-insensitive) are treated as success so the
+    // form never reveals whether an address is already subscribed.
+    const ip = getClientIp(request);
+    await getPool().query(
+      `INSERT INTO newsletter_subscribers (email, source, client_ip, user_agent)
+       VALUES ($1, 'Website', $2::inet, $3)
+       ON CONFLICT (lower(btrim(email))) DO NOTHING`,
+      [
+        email,
+        ip && isIP(ip) ? ip : null,
+        request.headers.get("user-agent")?.slice(0, 500) ?? null,
+      ],
+    );
 
     return NextResponse.json({ success: true });
   } catch {
